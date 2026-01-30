@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main_style.css">
+    <title>KSLPCE - 메인</title>
+</head>
+
+<body>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="loginClose">&times;</span>
+            <h2>Login</h2>
+            <form id="modalLoginForm">
+                <input type="text" id="loginId" placeholder="아이디" required>
+                <input type="password" id="loginPw" placeholder="비밀번호" required>
+                <button type="submit" class="login-submit-btn">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="signupClose">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="modalSignupForm">
+                <input type="text" id="signupId" placeholder="아이디 생성" required>
+                <input type="password" id="signupPw" placeholder="비밀번호 생성" required>
+                <input type="text" id="signupNickname" placeholder="닉네임" required>
+                <button type="submit" class="login-submit-btn">가입하기</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="top-auth-buttons">
+        <button type="button" class="auth-btn" id="loginBtn">로그인</button>
+        <button type="button" class="auth-btn" id="signupBtn">회원가입</button>
+        <button type="button" class="auth-btn hidden" id="logoutBtn">로그아웃</button>
+    </div>
+
+    <h1 id="hometitle">세상을 유지하는 힘<br>K-SPLCE</h1>
+    <h2 id="greeting"></h2>
+
+    <div class="main-container">
+        <a href="kid-service.html" class="photo-item">
+            <img src="좌사진.png" alt="Kid">
+            <h4 class="service-label"><span>Kid</span></h4>
+        </a>
+        <a href="senior-service.html" class="photo-item">
+            <img src="중사진.png" alt="Senior">
+            <h4 class="service-label"><span>Senior</span></h4>
+        </a>
+        <a href="pet-service.html" class="photo-item">
+            <img src="우사진.png" alt="Pet">
+            <h4 class="service-label"><span>Pet</span></h4>
+        </a>
+    </div>
+
+    <script src="login.js"></script>
+
+    <script>
+        // 🚨 여기에 Render에서 받은 본인의 URL을 넣으세요!
+        const SERVER_URL = 'https://my-auth-web.onrender.com';
+
+        async function register() {
+            const username = document.getElementById('signupId').value;
+            const password = document.getElementById('signupPw').value;
+
+            const res = await fetch(`${SERVER_URL}/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await res.json();
+            alert(data.message || data.error);
+        }
+
+        async function login() {
+            const username = document.getElementById('loginUser').value;
+            const password = document.getElementById('loginPass').value;
+
+            const res = await fetch(`${SERVER_URL}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await res.json();
+            alert(data.message || data.error);
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>
