@@ -3,11 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-SPLCE | Senior Service</title>
     <link rel="stylesheet" href="main_style.css">
     <style>
+        /* 상세 페이지 전용 배경 (연두색 계열) */
         body {
-            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important;
         }
 
         .service-content {
@@ -24,33 +26,57 @@
             text-decoration: none;
             color: black;
             font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #333;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-    <div class="service-content">
-        <h1>👵 Senior Care Service</h1>
-        <p>어르신들의 편안하고 건강한 노후를 위한 맞춤형 관리 서비스입니다.</p>
-        <img src="중사진.png" style="width: 300px; border-radius: 20px; margin: 20px;">
-        <br>
-        <a href="index.html"></a>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="loginClose">&times;</span>
+            <h2>Login</h2>
+            <form id="modalLoginForm">
+                <input type="text" id="loginId" placeholder="아이디" required>
+                <input type="password" id="loginPw" placeholder="비밀번호" required>
+                <button type="submit" class="login-submit-btn">로그인</button>
+            </form>
+        </div>
     </div>
-</body>
 
-<body>
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="signupClose">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="modalSignupForm">
+                <input type="text" id="signupId" placeholder="아이디 생성" required>
+                <input type="password" id="signupPw" placeholder="비밀번호 생성" required>
+                <input type="text" id="signupNickname" placeholder="닉네임" required>
+                <button type="submit" class="login-submit-btn">가입하기</button>
+            </form>
+        </div>
+    </div>
+
     <div class="top-auth-buttons">
         <button type="button" class="auth-btn" id="loginBtn">로그인</button>
         <button type="button" class="auth-btn" id="signupBtn">회원가입</button>
         <button type="button" class="auth-btn hidden" id="logoutBtn">로그아웃</button>
     </div>
 
-    <h2 id="greeting"></h2>
     <div class="service-content">
-        <a href="index.html" class="back-btn">메인으로 돌아가기"></a>
+        <h1>👵 Senior Care Service</h1>
+        <p>어르신들의 편안하고 건강한 노후를 위한 맞춤형 관리 서비스입니다.</p>
+        <img src="중사진.png" alt="Senior Service" style="width: 300px; border-radius: 20px; margin: 20px;">
+        <h2 id="greeting"></h2> <br>
+        <a href="index.html" class="back-btn">메인으로 돌아가기</a>
     </div>
 
-    <script src=" login.js"></script>
+    <script src="login.js"></script>
 </body>
 
 </html>

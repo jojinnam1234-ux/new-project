@@ -1,32 +1,49 @@
+/* --- 기본 레이아웃 --- */
 body {
     margin: 0;
     padding: 20px;
     text-align: center;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    /* 배경 이미지와 색상 통합 */
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+        url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     background-color: rgb(185, 226, 250);
-    font-family: 'Malgun Gothic', sans-serif;
+    /* 이미지 로딩 전 대비용 */
+    min-height: 100vh;
 }
 
+/* 요소 숨김 처리 */
 .hidden {
     display: none !important;
 }
 
+/* --- 타이틀 및 인사말 --- */
 #hometitle {
-    font-size: 5rem;
+    font-size: clamp(2rem, 8vw, 5rem);
+    /* 반응형 폰트 크기 */
     color: rgb(3, 2, 24);
-    margin: 40px 0 20px;
+    margin: 60px 0 20px;
+    line-height: 1.2;
 }
 
 #greeting {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 40px;
-    color: #333;
+    color: #2c3e50;
     height: 2.5rem;
+    font-weight: 600;
 }
 
+/* --- 메인 메뉴 카드 --- */
 .main-container {
     display: flex;
     justify-content: center;
-    gap: 80px;
+    flex-wrap: wrap;
+    /* 모바일 대응 */
+    gap: 40px;
     margin-top: 20px;
 }
 
@@ -34,31 +51,36 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 18%;
+    width: 250px;
+    /* 고정 크기로 안정감 부여 */
     text-decoration: none;
     color: inherit;
-    transition: 0.3s;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .photo-item img {
     width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 1 / 1;
+    /* 정사각형 유지 */
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .service-label span {
     display: inline-block;
-    margin-top: 15px;
-    padding: 8px 25px;
+    margin-top: 20px;
+    padding: 10px 30px;
     background-color: white;
     border: 2px solid #333;
-    border-radius: 5px;
-    font-size: 1.3rem;
+    border-radius: 30px;
+    font-size: 1.2rem;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .photo-item:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px);
 }
 
 .photo-item:hover .service-label span {
@@ -66,21 +88,26 @@ body {
     color: white;
 }
 
+/* --- 상단 버튼 세트 --- */
 .top-auth-buttons {
-    position: absolute;
+    position: fixed;
+    /* absolute보다 고정된 fixed 권장 */
     top: 20px;
     right: 20px;
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    z-index: 100;
 }
 
 .auth-btn {
-    padding: 8px 18px;
+    padding: 10px 20px;
     background-color: white;
     border: 1px solid #333;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
 }
 
 .auth-btn:hover {
@@ -88,61 +115,73 @@ body {
     color: white;
 }
 
+/* --- 모달 스타일 --- */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    /* 배경 흐림 효과 */
 }
 
 .modal-content {
     background-color: white;
     margin: 10% auto;
     padding: 40px;
-    border-radius: 15px;
-    width: 320px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 350px;
     position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .close-btn {
     position: absolute;
     right: 20px;
-    top: 10px;
-    font-size: 30px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
     cursor: pointer;
 }
 
+.close-btn:hover {
+    color: #333;
+}
+
+/* --- 폼 입력창 및 버튼 --- */
 #modalLoginForm input,
 #modalSignupForm input {
-    width: 90%;
-    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    /* 패딩 포함 너비 계산 */
+    padding: 14px;
     margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    font-size: 1rem;
 }
 
 .login-submit-btn {
     width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    background-color: rgb(185, 226, 250);
-    border: 1px solid #333;
-    border-radius: 8px;
+    padding: 14px;
+    margin-top: 20px;
+    background-color: #b9e2fa;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.2s;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
-        url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1600&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+.login-submit-btn:hover {
+    background-color: #9cd4f5;
+    transform: scale(1.02);
 }

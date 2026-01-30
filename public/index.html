@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main_style.css">
     <title>KSLPCE - 메인</title>
+    <link rel="stylesheet" href="main_style.css">
 </head>
 
 <body>
+
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="loginClose">&times;</span>
@@ -42,57 +43,22 @@
 
     <h1 id="hometitle">세상을 유지하는 힘<br>K-SPLCE</h1>
     <h2 id="greeting"></h2>
-
     <div class="main-container">
         <a href="kid-service.html" class="photo-item">
-            <img src="좌사진.png" alt="Kid">
+            <img src="좌사진.png" alt="Kid Service">
             <h4 class="service-label"><span>Kid</span></h4>
         </a>
         <a href="senior-service.html" class="photo-item">
-            <img src="중사진.png" alt="Senior">
+            <img src="중사진.png" alt="Senior Service">
             <h4 class="service-label"><span>Senior</span></h4>
         </a>
         <a href="pet-service.html" class="photo-item">
-            <img src="우사진.png" alt="Pet">
+            <img src="우사진.png" alt="Pet Service">
             <h4 class="service-label"><span>Pet</span></h4>
         </a>
     </div>
 
     <script src="login.js"></script>
-
-    <script>
-        // 🚨 여기에 Render에서 받은 본인의 URL을 넣으세요!
-        const SERVER_URL = 'https://my-auth-web.onrender.com';
-
-        async function register() {
-            const username = document.getElementById('signupId').value;
-            const password = document.getElementById('signupPw').value;
-
-            const res = await fetch(`${SERVER_URL}/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            const data = await res.json();
-            alert(data.message || data.error);
-        }
-
-        async function login() {
-            const username = document.getElementById('loginUser').value;
-            const password = document.getElementById('loginPass').value;
-
-            const res = await fetch(`${SERVER_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            const data = await res.json();
-            alert(data.message || data.error);
-        }
-    </script>
-
-
-
 
 </body>
 
